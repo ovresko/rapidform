@@ -1,0 +1,49 @@
+@layout('layouts.master')
+
+@section('content')
+
+<section class="section ">
+    <div class="container">
+
+      <div class="level">
+          <div class="level-item has-text-centered">
+              <div>
+
+                <img src="/images/rapidoc.svg" class="md-home-logo" alt="">
+                <h1 class="title is-4">Free and fast
+                    <span class="typer" id="main" data-words="birthday card,invoice,curriculum,quotation,letter" data-delay="100" data-deleteDelay="3000"></span>
+                    <span class="cursor" data-owner="main"></span>
+                 generator </h1>
+
+                  <script async src="https://unpkg.com/typer-dot-js@0.1.0/typer.js"></script>
+
+
+
+
+
+                    <h1 class="title  is-1">
+
+
+
+                  </h1>
+                    <a href="{{route('tools')}}" class=" is-success button is-medium mt-4"><span> Create your document </span> <span class="icofont-dotted-right"></span></a>
+                    <p class="has-text-grey-light has-text-centered is-size-7 home-btn-info  count">3224522</p> 
+                    <p class="has-text-grey-light has-text-centered is-size-7 home-btn-info ">Lorem ipsum dolor, sit amet consectetur<br> adipisicing elit. Quis, enim?</p>
+              </div>
+            </div>
+
+
+      </div>
+
+    </div>
+  </section>
+
+@endsection
+
+@section('scripts')
+<script>
+
+
+    </script>
+
+@endsection

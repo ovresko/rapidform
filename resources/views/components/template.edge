@@ -1,0 +1,24 @@
+
+
+{{$loop.index == 0 ? el(' <div class="column is-full"> <h3 class="title is-4 main-color">'+$loop.total +' Template(s) you can use with $title</h3></div>',f.rapidform):''}}
+
+<div class="column is-one-fifth">
+    <a  href='/tools/{{f.rapidform_id}}?template={{f.id}}'>
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img class="featured-img" src="  {{f.logo}}" alt=" {{f.title}}">
+              </figure>
+            </div>
+            <div class="card-content has-text-left">
+
+
+              <div class="content">
+                 <p><strong> {{f.title}}</strong></p>
+                  {{f.description}}             </div>
+            </div>
+          </div>
+        </a>
+
+
+    </div>

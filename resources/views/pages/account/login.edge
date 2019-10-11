@@ -1,0 +1,75 @@
+@layout('layouts.master')
+
+@section('content')
+
+
+
+
+<div class="section has-text-centered">
+
+
+    <div class="columns is-mobile">
+        <div class="column  is-4   is-offset-4">
+
+
+            <h3 class="title is-4 main-color"> Login</h3>
+            <h5 class="subtitle is-7"> {{ antl.formatMessage('t.tools.header.subtitle') }} </h5>
+
+            @if(merrors)
+
+            <article class="message is-warning">
+                <div class="message-body">
+                    {{ merrors }}
+                </div>
+              </article>
+
+
+            @endif
+
+            <form action="/login" method="post">
+              {{ csrfField() }}
+
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="email" name="email" placeholder="Email">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="password" name="password" placeholder="Password">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field is-grouped is-pulled-right">
+                <p class="control">
+                  <a href="{{route('signup')}}" class="button is-text">Create account</a>
+                  </p>  <p class="control">
+                  <button type="submit" class="button is-success">
+                    Login
+                  </button>
+                </p>
+
+
+              </div>
+
+
+
+            </form>
+
+
+        </div>
+      </div>
+
+
+
+</div>
+
+@endsection

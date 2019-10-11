@@ -1,0 +1,94 @@
+@layout('layouts.master')
+
+@section('content')
+
+<div class="section  ">
+
+  <div class="columns is-mobile">
+
+    <div class="column is-three-fifths"></div>
+      <div class="column   ">
+
+          <h3 class="title is-4 main-color"> Create account</h3>
+          <h5 class="subtitle is-7"> {{ antl.formatMessage('t.tools.header.subtitle') }} </h5>
+
+          <form action="/signup" method="post">
+            {{ csrfField() }}
+
+            <div class="field">
+                <p class="control has-icons-left ">
+                  <input class="input" type="text" value="{{ old('username', '') }}" name="username" placeholder="Name">
+                  <span class="icon is-small is-left">
+                      <i class="fas fa-user"></i>
+                  </span>
+
+                </p>
+                <p class="help is-danger">
+                  {{ elIf('<span>$self</span>', getErrorFor('username'), hasErrorFor('username')) }}
+
+                </p>
+
+              </div>
+
+
+            <div class="field">
+              <p class="control has-icons-left  ">
+                <input class="input" type="email" value="{{ old('email', '') }}" name="email" placeholder="Email">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+
+              </p>
+              <p class="help is-danger">
+                {{ elIf('<span>$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+
+              </p>
+
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" name="password" placeholder="Password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+              <p class="help is-danger">
+                {{ elIf('<span>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+
+              </p>
+
+            </div>
+
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" name="passwordRepeat" placeholder="Repeat Password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+              <p class="help is-danger">
+                {{ elIf('<span>$self</span>', getErrorFor('passwordRepeat'), hasErrorFor('passwordRepeat')) }}
+
+              </p>
+            </div>
+
+            <div class="field is-grouped">
+              <p class="control">
+                <button type="submit" class="button is-success">
+                  Signup
+                </button>
+              </p>
+
+              <div class="control">
+                <a href="{{route('login')}}" class="button is-text">Login</a>
+              </div>
+            </div>
+
+          </form>
+
+      </div>
+    </div>
+
+</div>
+
+@endsection

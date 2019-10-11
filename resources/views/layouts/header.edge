@@ -1,0 +1,88 @@
+
+    <!-- START NAV -->
+    <nav class="navbar is-white">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item brand-text" href="../">
+         <img src="/images/rapidoc.svg" alt="">
+        </a>
+                <div class="navbar-burger burger" data-target="navMenu">
+                    <span>    </span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+
+                    <div class="dropdown  navbar-item">
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span>{{antl.currentLocale()}}</span>
+                            <span class="icon is-small">
+                              <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div class="dropdown-content">
+
+                              @each(locale in locales)
+                    <a class="dropdown-item" href="/switch/{{ locale }}"> {{ locale }} </a>
+                  @endeach
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+                <a class="navbar-item {{ active=='Home' ? 'is-active' : ''}}" href="{{route('home')}}">
+            Acceuil
+          </a>
+                    <a class="navbar-item has-text-weight-bold {{ active=='Facture' ? 'is-active' : ''}}" href="{{route('tools')}}">
+            Outils création
+          </a>
+
+                    <a class="navbar-item {{ active=='Profile' ? 'is-active' : ''}}" href="admin.html">
+            Tarifs
+          </a>
+          @loggedIn
+
+
+          <div class="navbar-item has-dropdown is-hoverable">
+
+            <a class="navbar-link {{ active=='Facture' ? 'is-active' : ''}}" href="{{route('account')}}">
+              Compte
+            </a>
+
+            <div id="moreDropdown" class="navbar-dropdown">
+
+              <a class="navbar-item " href="{{route('logout')}}">
+                logout
+              </a>
+
+
+
+
+
+
+            </div>
+          </div>
+
+
+            @else
+            <a class="navbar-item  {{ active=='Facture' ? 'is-active' : ''}}" href="{{route('login')}}">
+              Connextion
+            </a>
+          @endloggedIn
+
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <!-- END NAV -->

@@ -1,0 +1,134 @@
+
+    let steps = [{
+      name: 'company',
+      title: 'Company',
+      content: [{
+        name: 'title',
+        label: 'Titre',
+        type: 'text',
+        class: 'input'
+      },
+      {
+        name: 'paye',
+        label: 'Payé',
+        type: 'select',
+        values: [
+          { name: 'algerie', value: 'Algérie' },
+          { name: 'france', value: 'France' },
+        ]
+      }, {
+        name: 'sexe',
+        label: 'Sexe',
+        type: 'radio',
+        values: [
+          { name: 'femme', value: 'Femme' },
+          { name: 'male', value: 'Homme' },
+          { name: 'autre', value: 'Autres' },
+        ]
+      }, {
+        name: 'jobs',
+        label: 'Jobs',
+        type: 'check',
+        values: [
+          { name: 'femme', value: 'Femme' },
+          { name: 'male', value: 'Homme' },
+          { name: 'autre', value: 'Autres' },
+        ]
+      },
+      {
+        name: 'address',
+        label: 'Adresse',
+        type: 'text',
+        class: 'input'
+      },
+      {
+        name: 'file',
+        label: 'Fichier',
+        type: 'file',
+      },
+      {
+        name: 'mydate',
+        label: 'Date',
+        type: 'date',
+      },
+      {
+        name: 'email',
+        label: 'Email',
+        type: 'email',
+        class: 'input'
+      }
+      ]
+    },
+    {
+      name: 'client',
+      title: 'Client',
+      content: [{
+        name: 'nom',
+        label: 'Nom client',
+        type: 'text',
+        class: 'input'
+      },
+      {
+        name: 'contact',
+        label: 'Contact',
+        type: 'textarea',
+        class: 'textarea',
+        rows: '3'
+      }
+      ]
+    },
+    {
+      name: 'client',
+      title: 'Client',
+      content: [{
+        name: 'nom',
+        label: 'Nom client',
+        type: 'text',
+        class: 'input'
+      },
+      {
+        name: 'contact',
+        label: 'Contact',
+        type: 'textarea',
+        class: 'textarea',
+        rows: '3'
+      }
+      ]
+    },
+    {
+      name: 'client',
+      title: 'Client',
+      content: [{
+        name: 'nom',
+        label: 'Nom client',
+        type: 'text',
+        class: 'input'
+      },
+      {
+        name: 'contact',
+        label: 'Contact',
+        type: 'textarea',
+        class: 'textarea',
+        rows: '3'
+      }
+      ]
+    },
+    {
+      name: 'client',
+      title: 'Client',
+      content: [{
+        name: 'nom',
+        label: 'Nom client',
+        type: 'text',
+        class: 'input'
+      },
+      {
+        name: 'contact',
+        label: 'Contact',
+        type: 'textarea',
+        class: 'textarea',
+        rows: '3'
+      }
+      ]
+    }
+    ]

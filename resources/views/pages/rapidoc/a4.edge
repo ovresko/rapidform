@@ -1,0 +1,257 @@
+@layout('layouts.master')
+@section('content')
+
+<div class="box has-background-light	" style="padding: 0px;   ">
+<div class="level">
+  <input type="hidden" id="id"
+  value="{{id}}">
+  <div class="level-left">
+      <div class="level-item has-text-white" style="padding-left: 10px; padding-bottom: 0px">
+          <h5 class="title is-5 has-text-black ">{{title}}
+          @if(country)
+            <span class='tag is-white'> {{country}}</span>
+            @endif
+            {{r}}</h5>
+      </div>
+  </div>
+  <div class="level-right">
+<div class="level-item"  style="padding: 10px; padding-bottom: 0px">
+    <div class="buttons has-addons " style="margin-bottom: 0px">
+        <button id="savebtn" class="button   ">
+            <i class="icofont-diskette"></i>
+          <span > Save to preview</span></button>
+
+          <button id="clearbtn" class="button   ">
+              <i class="icofont-spinner-alt-3"></i>
+            <span> Reset</span></button>
+
+            <button id="printBtn" class="button   ">
+                <i class="icofont-print"></i>
+            <span > Print</span></button>
+
+            <a id="template-btn" class="button"  href="/tools?form={{id}}"   >
+            <i class="icofont-beaker"></i>
+          <span> Change template</span></a>
+
+      </div>
+      </div>
+  </div>
+
+
+</div>
+</div>
+
+<div class="columns">
+
+    <div class="column is-three-fifths">
+
+{{style('css/bulma-steps.min.css')}}
+
+    <form id="formid" action="/tools/download/{{id}}" method="post">
+  {{ csrfField() }}
+    <div class="steps" id="setps">
+        @each(step in fields)
+        <div class="step-item   ">
+            <div class="step-marker">{{$loop.index+1}}</div>
+            <div class="step-details">
+              <p class="step-title">{{step.title}}</p>
+            </div>
+          </div>
+        @endeach
+
+        <div class="step-item   ">
+            <div class="step-marker">
+
+                <i class="fa fa-check"></i>
+
+            </div>
+            <div class="step-details">
+              <p class="step-title">Download</p>
+            </div>
+          </div>
+
+        <div class="steps-content">
+            @each(step in fields)
+            <div class="step-content has-text-centered">
+                @each(content in step.content)
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label">{{content.title}}</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+
+                          @if(content.type=='textarea')
+                               <textarea  id="{{content.name}}" value="{{content.value}}" name="{{content.name}}" class="textarea" placeholder="{{content.placeholder}}" rows="{{content.rows}}">{{content.value}} </textarea>
+
+
+                               @elseif(content.type=='date')
+
+                                <input name="{{content.name}}" value="{{content.value}}"  class="date datepicker" type="date">
+
+                               @elseif(content.type=='file')
+
+                               <label class="file-label">
+                                  <input class="file-input" type="file" name="{{content.name}}">
+                                  <span class="file-cta">
+                                    <span class="file-icon">
+                                      <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                      Choose a file…
+                                    </span>
+                                  </span>
+                                  <span class="file-name">
+
+                                  </span>
+                                </label>
+
+
+                               @elseif(content.type=='check')
+
+
+                                 @each(ch in content.values)
+
+                                    <label class="checkbox">
+                                        <input name="{{$parent.content.name}}"  value="{{ch.name}}" type="checkbox" {{ ch.checked == '1' ? el('checked') : '' }}>
+                                        {{ch.value}}
+                                      </label>
+                                  @endeach
+
+
+
+                         @elseif(content.type=='radio')
+
+
+                          @each(r in content.values)
+                          <label class="radio">
+                              <input type="radio"  value="{{r.name}}" name="{{$parent.content.name}}"  {{ r.checked == '1' ? el('checked') : '' }}>
+                              {{r.value}}
+                            </label>
+                          @endeach
+
+                          @elseif(content.type=='select')
+                          <div class="select"  style="   max-width: none;  width: 100%;">
+                            <select name="{{content.name}}" value="{{content.value}}" style="cursor: pointer;
+                            display: block;
+                            font-size: 1em;
+                            max-width: none;
+                            outline: 0;
+                            width: 100%;"  >
+                              <option name="{{content.name}}" value="{{content.value}}">{{content.value}}</option>
+                              <option name="" value=""></option>
+
+                              @each(v in content.values)
+                              <option name="{{v.name}}" value="{{v.value}}">{{v.value}}</option>
+                              @endeach
+
+                            </select>
+                          </div>
+                          @else
+                          <input class="{{content.class}}" value="{{content.value}}" rows="{{content.rows}}" name="{{content.name}}" id="{{content.name}}" type="{{content.type}}" placeholder="{{content.placeholder}}" autofocus data-validate="require">
+
+                          @endif
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                @endeach
+            </div>
+            @endeach
+            <div class="step-content">
+
+
+              <div class="container has-text-centered">
+                <img style="margin:20px" src="/images/checkmark.svg" width="80px" alt="">
+                <p>Great job! Your document is ready</p>
+                <button style="margin:20px"  id="savefinish" class="button is-large">  <img  src="/images/download.svg" width="30px" alt="">   Download PDF</button>
+              </div>
+            </div>
+
+
+          </div>
+
+        <div  class="steps-actions">
+            <div class="steps-action">
+              <a href="#" data-nav="previous" class="button is-primary">Previous</a>
+            </div>
+            <div id="next" class="steps-action">
+              <a href="#" data-nav="next" class="button is-primary">Next</a>
+            </div>
+          </div>
+
+    </div>
+</form>
+
+
+</div>
+<div class="column doc-show">
+
+  @!component('components.rapidview',title=content)
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+{{ script('js/bulma-steps.min.js') }}
+
+      <script> bulmaSteps.attach(); </script>.
+
+
+
+
+
+
+
+
+
+
+@endsection
+
+
+@section('scripts')
+
+<script>
+
+// document.getElementById('import_btn').onclick = function() {
+//   $('#my_file').click();
+//   $('#my_file').bind('input', function (e, data) {
+//     console.log("loaded");
+//     console.log(data);
+
+//    // location.reload();
+//     uploadFile();
+// })
+
+  //send to server
+
+
+
+// };
+
+</script>
+
+{{--
+{{ script('js/dropzone.js') }}
+<script>
+
+    var myDropzone = new Dropzone("#myId", { url: "/tools/upload"});
+console.log('loading')
+      </script>  --}}
+
+
+
+           {{script('js/printThis.js')}}
+@endsection

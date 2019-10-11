@@ -1,0 +1,79 @@
+@layout('layouts.master')
+
+
+@section('content')
+<div class="section">
+
+<div class="container has-text-centered">
+
+    @if(!templates)
+    <h3 class="title is-4 main-color"> {{ antl.formatMessage('t.tools.header.title') }} </h3>
+    <h5 class="subtitle is-7"> {{ antl.formatMessage('t.tools.header.subtitle') }} </h5>
+
+    <div style="width:100%; max-width: 400px; text-align: center; margin: auto" class="control has-icons-right " >
+      <input class="input is-rounded " id="search" name="search" type="email" placeholder="Invocie, card, request...">
+      <progress style="display: none" id="loading" name="loading" class="progress is-small is-primary" max="100"></progress>
+
+      <span class="icon is-small is-right">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    @endif
+
+<div  id="result"class="columns is-multiline  mt-4">
+</div>
+
+<div class="columns is-multiline">
+    @!each(f in templates, include = 'components.template' ,sizes='4')
+
+</div>
+
+@if(!templates)
+
+<div class="section">
+  <div class="container">
+    <h2 class="title">Featured</h2>
+
+    <div class="columns multi-line">
+      @each(f in featured)
+    <div class="column is-one-fifth">
+    <a   href="/tools/{{f.rapidform_id}}?template={{f.id}}">
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img class="featured-img" src="  {{f.logo}}" alt=" {{f.title}}">
+              </figure>
+            </div>
+            <div class="card-content has-text-left">
+
+
+              <div class="content">
+                  {{f.title}}
+              </div>
+            </div>
+          </div>
+        </a>
+
+
+    </div>
+    @endeach
+    </div>
+
+  </div>
+</div>
+@endif
+
+</div>
+
+
+</div>
+
+
+<script>
+
+    </script>
+@endsection
+
+
+
+
